@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TogetherForeverApp.Views.NewMemberPage"
+             Shell.PresentationMode="ModalAnimated"
+             Title="New Item"
+             >
+    <ContentPage.Resources>
+        <Style TargetType="Entry">
+            <Setter Property="PlaceholderColor" Value="LightGray"/>
+            <Setter Property="FontSize" Value="Medium"/>
+            <Setter Property="Margin" Value="10,10"/>
+        </Style>
+        
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Spacing="3" Margin="15,80">
+            <Label StyleClass="header" 
+                   Text="Add Member"
+                   HorizontalOptions="Center"
+                   TextColor="#1C609A"
+                   FontSize="Large"
+                   Margin="0,20"
+                   />
+            <!--<Label Text="Name" FontSize="Medium" />-->
+            <Entry 
+                Text="{Binding memberName, Mode=TwoWay}" 
+                Placeholder="Member Name"
+                />
+            <Entry 
+                Text="{Binding memberEmail, Mode=TwoWay}" 
+                Placeholder="Email"
+                Keyboard="Email"
+                />
+            <Entry 
+                Text="{Binding memberContact, Mode=TwoWay}" 
+                Placeholder="Contact"
+                />
+            <Label  Margin="15,10" Text="Is Manager" FontSize="Medium" />
+            <Switch 
+                IsEnabled="True"
+                Margin="15,10"
+                IsToggled="{Binding isManager,Mode=TwoWay}" 
+                OnColor="LightGreen" 
+                ThumbColor="#2196F3" 
+                HorizontalOptions="Start"/>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

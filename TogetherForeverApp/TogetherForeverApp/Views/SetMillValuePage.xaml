@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TogetherForeverApp.Views.SetMillValuePage"
+             xmlns:model="clr-namespace:TogetherForeverApp.Models"
+             xmlns:local="clr-namespace:TogetherForeverApp.ViewModels"  
+             >
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="Small"/>
+            <Setter Property="Margin" Value="5,5"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+        </Style>
+        <Style TargetType="Entry">
+            <Setter Property="PlaceholderColor" Value="LightGray"/>
+            <Setter Property="FontSize" Value="Medium"/>
+            <Setter Property="Margin" Value="10,10"/>
+            <Setter Property="Keyboard" Value="Numeric"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="AliceBlue"
+                   Margin="10"
+                   Padding="20,10">
+                <StackLayout Orientation="Vertical"  x:DataType="local:SettingViewModel">
+                    <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".3*"/>
+                        <ColumnDefinition Width=".7*"/>
+                    </Grid.ColumnDefinitions>
+                   
+                        
+                        <Label Grid.Row="0" Grid.Column="0" Text="Breakfast :"/>
+                        <Label Grid.Row="1" Grid.Column="0" Text="Lunch :"/>
+                        <Label Grid.Row="2" Grid.Column="0" Text="Dinner :"/>
+
+                        <Entry Grid.Row="0" Grid.Column="1" Text="{Binding Mill.BreakFast,Mode=OneWayToSource}"/>
+                        <Entry Grid.Row="1" Grid.Column="1" Text="{Binding Mill.Lunch,Mode=OneWayToSource}"    />
+                        <Entry Grid.Row="2" Grid.Column="1" Text="{Binding Mill.Dinner,Mode=OneWayToSource}"   />
+                    </Grid>
+                    <Button Text="SET Mill Value" 
+                        BackgroundColor="#2196F3" 
+                        Command="{Binding  SetMillValue}"
+                        TextColor="White"
+                        />
+                </StackLayout>
+            </Frame>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

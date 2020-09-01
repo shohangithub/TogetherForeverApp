@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TogetherForeverApp.Views.SettingPage"
+             xmlns:local="clr-namespace:TogetherForeverApp.ViewModels"  
+             xmlns:model="clr-namespace:TogetherForeverApp.Models"  
+            >
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout x:DataType="local:SettingViewModel" Orientation="Vertical" Padding="10,10" Margin="5,5">
+                <Button Text="SET Mill Value" 
+                        BackgroundColor="#2196F3" 
+                        Command="{Binding  GotoMillValue}"
+                        TextColor="White"
+                        />
+            </StackLayout>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
