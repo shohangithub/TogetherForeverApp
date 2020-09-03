@@ -18,7 +18,7 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout x:DataType="local:AddMillViewModel">
             <StackLayout Orientation="Vertical" 
                          Spacing="5"
                          Padding="10"
@@ -30,8 +30,10 @@
                 <Picker x:Name="pickerX"
                         Title="Select Member"
                         ItemsSource="{Binding Members}"
-                        ItemDisplayBinding="{Binding MemberName}"                      
+                        ItemDisplayBinding="{Binding MemberName}"
+                        SelectedItem="{Binding Mill.MemberName}"
                      />
+                <Label Text="{Binding Mill.Lunch}"/>
                 <Frame Margin="0,25,0,0"
                        IsVisible="{Binding IsSetMember,Mode=TwoWay}"
                        >
@@ -55,12 +57,13 @@
                         <Label Grid.Column="0" Grid.Row="1" StyleClass="switchLabel" Text="Breakfast"/>
                     <Label Grid.Column="0" Grid.Row="2" StyleClass="switchLabel" Text="Lunch"/>
                     <Label Grid.Column="0" Grid.Row="3" StyleClass="switchLabel" Text="Dinner"/>
-                    <Switch Grid.Column="1" Grid.Row="1" />
-                    <Switch Grid.Column="1" Grid.Row="2" />
-                    <Switch Grid.Column="1" Grid.Row="3" />
+                        <Switch Grid.Column="1" Grid.Row="1" IsToggled="{Binding Mill.BreakFast,Mode=TwoWay}"/>
+                        <Switch Grid.Column="1" Grid.Row="2" IsToggled="{Binding Mill.Lunch,Mode=TwoWay}"/>
+                        <Switch Grid.Column="1" Grid.Row="3" IsToggled="{Binding Mill.Dinner,Mode=TwoWay}"/>
                 </Grid>
                 </Frame>
                 <Button
+                     Command="{Binding OnAddMillCommand}"
                      Text="SET"
                      TextColor="White"
                      BackgroundColor="#2196F3"

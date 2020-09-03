@@ -12,5 +12,11 @@ namespace TogetherForeverApp.Models
         public bool Dinner { get; set; }
         public string ManagerId { get; set; }
         public string MemberName { get; set; }
+        public string BreakFastFlag => "B"; 
+        public string BreakFastColor => BreakFast ? "Green" : "Red"; 
+        public string LunchFlag => "L"; 
+        public string LunchColor => Lunch ? "Green" : "Red"; 
+        public string DinnerFlag => "D";
+        public string DinnerColor => Dinner ? "Green" : "Red";
     }
 }

@@ -8,7 +8,7 @@ namespace TogetherForeverApp.Services
 {
     public class MillDataStore : IDataStore<Mill>
     {
-        readonly List<Mill> items;
+        public List<Mill> items;
 
         public MillDataStore()
         {
