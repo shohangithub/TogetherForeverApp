@@ -84,7 +84,7 @@
         <ShellContent Title="Mill" Icon="tab_feed.png" ContentTemplate="{DataTemplate local:MillListPage}" />
         <ShellContent Title="Settings" Icon="tab_about.png" ContentTemplate="{DataTemplate local:SettingPage}" />
         <!--<ShellContent Title="Settings" Icon="tab_about.png" Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />-->
-        <ShellContent Title="Browse" Icon="tab_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
+        <ShellContent Title="Costing" Icon="tab_feed.png" ContentTemplate="{DataTemplate local:CostingPage}" />
         </FlyoutItem>
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->

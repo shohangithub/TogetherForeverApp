@@ -6,7 +6,7 @@ namespace TogetherForeverApp.Models
 {
     public class Member
     {
-        public string MemberId { get; set; }
+        public Guid MemberId { get; set; }
         public string MemberName { get; set; }
         public string MemberEmail { get; set; }
         public string MemberContact { get; set; }

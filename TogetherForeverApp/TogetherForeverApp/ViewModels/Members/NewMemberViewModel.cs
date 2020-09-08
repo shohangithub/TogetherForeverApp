@@ -59,7 +59,7 @@ namespace TogetherForeverApp.ViewModels.Members
         {
             Member newMember = new Member()
             {
-                MemberId = Guid.NewGuid().ToString(),
+                MemberId = Guid.NewGuid(),
                 MemberName = memberName,
                 MemberEmail = memberEmail,
                 MemberContact = memberContact,

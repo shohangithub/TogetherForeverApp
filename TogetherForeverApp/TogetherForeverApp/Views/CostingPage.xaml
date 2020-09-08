@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TogetherForeverApp.Views.CostingPage"
+             xmlns:local="clr-namespace:TogetherForeverApp.ViewModels.Costing"
+             xmlns:model="clr-namespace:TogetherForeverApp.Models">
+    <ContentPage.Resources>
+        <Style TargetType="Frame" Class="contentFrame">
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+        </Style>
+        <Style TargetType="Frame" Class="bodyFrame">
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="HasShadow" Value="True"/>
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+        <Style TargetType="Label" Class="listItem">
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="FontSize" Value="Subtitle"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="LineBreakMode" Value="NoWrap"/>
+        </Style>
+        <Style TargetType="Label" Class="headerLabel">
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="FontSize" Value="Medium"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <RefreshView x:DataType="local:CostViewModel" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+                <CollectionView x:Name="ItemsListView"
+                                ItemsSource="{Binding costList}"
+                                SelectionMode="None">
+                    <CollectionView.Header>
+                        <Frame Padding="2">
+                            <Frame>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width=".2*"/>
+                                        <ColumnDefinition Width=".2*"/>
+                                        <ColumnDefinition Width=".2*"/>
+                                        <ColumnDefinition Width=".2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label StyleClass="headerLabel" FontSize="Subtitle" Grid.Row="0" Grid.Column="0" Text="Name"/>
+                                    <Label StyleClass="headerLabel" Grid.Row="0" Grid.Column="1" Text="Date"/>
+                                    <Label StyleClass="headerLabel" Grid.Row="0" Grid.Column="2" Text="Details"/>
+                                    <Label StyleClass="headerLabel" Grid.Row="0" Grid.Column="3" Text="Amount"/>
+                                </Grid>
+                            </Frame>
+                        </Frame>
+                    </CollectionView.Header>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Padding="2">
+                                <Frame>
+                                    <StackLayout Orientation="Horizontal" x:DataType="model:Cost">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width=".2*"/>
+                                                <ColumnDefinition Width=".2*"/>
+                                                <ColumnDefinition Width=".2*"/>
+                                                <ColumnDefinition Width=".2*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding CostByName}" StyleClass="listItem"/>
+                                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding CostingDate}" StyleClass="listItem"/>
+                                            <Label Grid.Row="0" Grid.Column="2" Text="{Binding CostHead}" StyleClass="listItem"/>
+                                            <Label Grid.Row="0" Grid.Column="3" Text="{Binding Amount}" StyleClass="listItem"/>
+                                        </Grid>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer 
+                                                    NumberOfTapsRequired="1"
+                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:CostViewModel}}, Path=GotoSetCostView}"		
+                                                    CommandParameter="{Binding .}">
+                                            </TapGestureRecognizer>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </Frame>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.Footer>
+                        <Frame Padding="2">
+                            <Frame>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width=".2*"/>
+                                        <ColumnDefinition Width=".2*"/>
+                                        <ColumnDefinition Width=".2*"/>
+                                        <ColumnDefinition Width=".2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label StyleClass="headerLabel" FontSize="Subtitle" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" FontAttributes="Bold" Text="Total:"/>
+                                    <Label StyleClass="headerLabel" Grid.Row="0" Grid.Column="3" FontAttributes="Bold" Text="{Binding Summation}"/>
+                                </Grid>
+                            </Frame>
+                        </Frame>
+                    </CollectionView.Footer>
+                </CollectionView>
+            </RefreshView>
+
+            <ImageButton
+            AbsoluteLayout.LayoutBounds="0.95,0.95,80,80"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            BackgroundColor="#2196F3"
+            CornerRadius="40"
+            HeightRequest="80"
+            Source="plus.png"
+            WidthRequest="80"
+            Command="{Binding GotoSetCostView}"/>
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

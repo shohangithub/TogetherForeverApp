@@ -15,12 +15,12 @@ namespace TogetherForeverApp.Services
         {
             items = new List<Member>()
             {
-                new Member { MemberId = Guid.NewGuid().ToString(), MemberName = "First item",  MemberEmail="This is an item description.",MemberContact="01854263181",IsManager=false,Password="" },
-                new Member { MemberId = Guid.NewGuid().ToString(), MemberName = "Second item", MemberEmail="This is an item description.",MemberContact="01854263181",IsManager=false,Password="" },
-                new Member { MemberId = Guid.NewGuid().ToString(), MemberName = "Third item",  MemberEmail="This is an item description.",MemberContact="01854263181",IsManager=false,Password="" },
-                new Member { MemberId = Guid.NewGuid().ToString(), MemberName = "Fourth item", MemberEmail="This is an item description.",MemberContact="01854263181",IsManager=false,Password="" },
-                new Member { MemberId = Guid.NewGuid().ToString(), MemberName = "Fifth item",  MemberEmail="This is an item description.",MemberContact="01854263181",IsManager=false,Password="" },
-                new Member { MemberId = Guid.NewGuid().ToString(), MemberName = "Sixth item",  MemberEmail="This is an item description.",MemberContact="01854263181",IsManager=false,Password="" }
+                new Member { MemberId = Guid.NewGuid(), MemberName = "First item",  MemberEmail="This is an item description.",MemberContact="01854263181",IsManager=false,Password="" },
+                new Member { MemberId = Guid.NewGuid(), MemberName = "Second item", MemberEmail="This is an item description.",MemberContact="01854263181",IsManager=false,Password="" },
+                new Member { MemberId = Guid.NewGuid(), MemberName = "Third item",  MemberEmail="This is an item description.",MemberContact="01854263181",IsManager=false,Password="" },
+                new Member { MemberId = Guid.NewGuid(), MemberName = "Fourth item", MemberEmail="This is an item description.",MemberContact="01854263181",IsManager=false,Password="" },
+                new Member { MemberId = Guid.NewGuid(), MemberName = "Fifth item",  MemberEmail="This is an item description.",MemberContact="01854263181",IsManager=false,Password="" },
+                new Member { MemberId = Guid.NewGuid(), MemberName = "Sixth item",  MemberEmail="This is an item description.",MemberContact="01854263181",IsManager=false,Password="" }
             };
         }
 
@@ -42,7 +42,8 @@ namespace TogetherForeverApp.Services
 
         public async Task<bool> DeleteItemAsync(string id)
         {
-            var oldItem = items.Where((Member arg) => arg.MemberId == id).FirstOrDefault();
+            var guidId = Guid.Parse(id);
+            var oldItem = items.Where((Member arg) => arg.MemberId == guidId).FirstOrDefault();
             items.Remove(oldItem);
 
             return await Task.FromResult(true);
@@ -50,7 +51,8 @@ namespace TogetherForeverApp.Services
 
         public async Task<Member> GetItemAsync(string id)
         {
-            return await Task.FromResult(items.FirstOrDefault(s => s.MemberId == id));
+            var guidId = Guid.Parse(id);
+            return await Task.FromResult(items.FirstOrDefault(s => s.MemberId == guidId));
         }
         public async Task<Member> GetItemAsync()
         {

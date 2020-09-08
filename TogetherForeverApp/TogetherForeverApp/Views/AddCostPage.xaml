@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TogetherForeverApp.Views.AddCostPage"
+             xmlns:local="clr-namespace:TogetherForeverApp.ViewModels.Costing"
+             xmlns:model="clr-namespace:TogetherForeverApp.Models"
+             >
+
+    <ContentPage.Resources>
+        <Style TargetType="Label" Class="switchLabel">
+            <Setter Property="Padding" Value="0,5"/>
+            <Setter Property="FontSize" Value="Medium"/>
+        </Style>
+        <Style TargetType="Switch">
+            <Setter Property="OnColor" Value="#50B0FB"/>
+            <Setter Property="ThumbColor" Value="#1976D2"/>
+            <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout x:DataType="local:CostViewModel">
+            <StackLayout Orientation="Vertical" 
+                         Spacing="5"
+                         Padding="10"
+                         Margin="10"
+                         >
+                
+                
+                        <!--SelectedItem="{Binding MemberName}"-->
+                <Frame Margin="0,25,0,0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <DatePicker Margin="0,5" 
+                                    Grid.Row="0"
+                                    Visual="Default"
+                                    Date="{Binding SelectedDate}"
+                         />
+                        <Picker x:Name="pickerX"
+                                Grid.Row="1"
+                                Title="Select Member"
+                                ItemsSource="{Binding Members}"
+                                ItemDisplayBinding="{Binding MemberName}"
+                                SelectedItem="{Binding SelectedMember}"
+                             />
+                        <Editor x:Name="Description"
+                                Grid.Row="2"
+                                Placeholder="Cost Details"
+                                Text="{Binding Cost.CostHead}"
+                                />
+                        <Entry x:Name="Amount"
+                                Grid.Row="3"
+                                Placeholder="Amount"
+                                Text="{Binding Cost.Amount}"
+                                Keyboard="Numeric"
+                                />
+                        <!--<Label Grid.Column="0" Grid.Row="1" StyleClass="switchLabel" Text="Breakfast"/>
+                        <Label Grid.Column="0" Grid.Row="2" StyleClass="switchLabel" Text="Lunch"/>
+                        <Label Grid.Column="0" Grid.Row="3" StyleClass="switchLabel" Text="Dinner"/>
+                        <Switch Grid.Column="1" Grid.Row="1" IsToggled="{Binding Mill.BreakFast,Mode=TwoWay}"/>
+                        <Switch Grid.Column="1" Grid.Row="2" IsToggled="{Binding Mill.Lunch,Mode=TwoWay}"/>
+                        <Switch Grid.Column="1" Grid.Row="3" IsToggled="{Binding Mill.Dinner,Mode=TwoWay}"/>-->
+                    </Grid>
+                </Frame>
+                <Button
+                     Command="{Binding AddCostCommand}"
+                     Text="SET"
+                     TextColor="White"
+                     BackgroundColor="#2196F3"
+                     Margin="0,15,0,0"
+                    />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

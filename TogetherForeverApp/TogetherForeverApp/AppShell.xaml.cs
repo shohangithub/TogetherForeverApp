@@ -16,6 +16,8 @@ namespace TogetherForeverApp
             Routing.RegisterRoute(nameof(NewMemberPage), typeof(NewMemberPage));
             Routing.RegisterRoute(nameof(AddMillPage), typeof(AddMillPage));
             Routing.RegisterRoute(nameof(SetMillValuePage), typeof(SetMillValuePage));
+            Routing.RegisterRoute(nameof(SetMillValuePage), typeof(SetMillValuePage));
+            Routing.RegisterRoute(nameof(AddCostPage), typeof(AddCostPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)
