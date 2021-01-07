@@ -1,8 +1,14 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.InteropServices;
 using System.Text;
+using TogetherForeverApp.Databases;
 using TogetherForeverApp.Models;
+using TogetherForeverApp.Services;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace TogetherForeverApp.ViewModels.Members
 {
@@ -16,13 +22,17 @@ namespace TogetherForeverApp.ViewModels.Members
         private string MemberContact;
         private bool IsManager;
         private string Password;
+
+        private Database<Member> database;
         public NewMemberViewModel()
         {
+            database = new Database<Member>(App.dbConnection);
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
         }
+
         private bool ValidateSave()
         {
             return !String.IsNullOrWhiteSpace(MemberName)
@@ -49,25 +59,28 @@ namespace TogetherForeverApp.ViewModels.Members
             get => IsManager;
             set => SetProperty(ref IsManager, value);
         }
+
         private async void OnCancel()
         {
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
         }
-
         private async void OnSave()
         {
             Member newMember = new Member()
             {
                 MemberId = Guid.NewGuid(),
-                MemberName = memberName,
-                MemberEmail = memberEmail,
-                MemberContact = memberContact,
-                IsManager = isManager                                   
+                MemberName = MemberName,
+                MemberEmail = MemberEmail,
+                MemberContact = MemberContact,
+                IsManager = IsManager
             };
 
-            await MemberStore.AddItemAsync(newMember);
-
+           
+             await database.CreateTable<Member>();
+            
+             await database.Insert(newMember);
+          
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
         }

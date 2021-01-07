@@ -13,15 +13,8 @@ namespace TogetherForeverApp.Services
 
         public MemberDataStore()
         {
-            items = new List<Member>()
-            {
-                new Member { MemberId = Guid.NewGuid(), MemberName = "First item",  MemberEmail="This is an item description.",MemberContact="01854263181",IsManager=false,Password="" },
-                new Member { MemberId = Guid.NewGuid(), MemberName = "Second item", MemberEmail="This is an item description.",MemberContact="01854263181",IsManager=false,Password="" },
-                new Member { MemberId = Guid.NewGuid(), MemberName = "Third item",  MemberEmail="This is an item description.",MemberContact="01854263181",IsManager=false,Password="" },
-                new Member { MemberId = Guid.NewGuid(), MemberName = "Fourth item", MemberEmail="This is an item description.",MemberContact="01854263181",IsManager=false,Password="" },
-                new Member { MemberId = Guid.NewGuid(), MemberName = "Fifth item",  MemberEmail="This is an item description.",MemberContact="01854263181",IsManager=false,Password="" },
-                new Member { MemberId = Guid.NewGuid(), MemberName = "Sixth item",  MemberEmail="This is an item description.",MemberContact="01854263181",IsManager=false,Password="" }
-            };
+            items = new List<Member>();
+            
         }
 
         public async Task<bool> AddItemAsync(Member item)
@@ -40,20 +33,20 @@ namespace TogetherForeverApp.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> DeleteItemAsync(string id)
-        {
-            var guidId = Guid.Parse(id);
-            var oldItem = items.Where((Member arg) => arg.MemberId == guidId).FirstOrDefault();
-            items.Remove(oldItem);
+        //public async Task<bool> DeleteItemAsync(string id)
+        //{
+        //    var guidId = Guid.Parse(id);
+        //    var oldItem = items.Where((Member arg) => arg.MemberId == guidId).FirstOrDefault();
+        //    items.Remove(oldItem);
 
-            return await Task.FromResult(true);
-        }
+        //    return await Task.FromResult(true);
+        //}
 
-        public async Task<Member> GetItemAsync(string id)
-        {
-            var guidId = Guid.Parse(id);
-            return await Task.FromResult(items.FirstOrDefault(s => s.MemberId == guidId));
-        }
+        //public async Task<Member> GetItemAsync(string id)
+        //{
+        //    var guidId = Guid.Parse(id);
+        //    return await Task.FromResult(items.FirstOrDefault(s => s.MemberId == guidId));
+        //}
         public async Task<Member> GetItemAsync()
         {
             return await Task.FromResult(items.FirstOrDefault());
@@ -66,6 +59,16 @@ namespace TogetherForeverApp.Services
         public List<Member> GetMembers()
         {
             return  items.ToList();
+        }
+
+        public Task<bool> DeleteItemAsync(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Member> GetItemAsync(string id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

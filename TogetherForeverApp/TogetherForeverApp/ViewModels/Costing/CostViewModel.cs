@@ -70,8 +70,8 @@ namespace TogetherForeverApp.ViewModels.Costing
             if (member != null)
             {
                 Cost.CostByName = member.MemberName;
-                Cost.CostBy = member.MemberId;
-                Cost.AddBy = member.MemberId;
+                //Cost.CostBy = member.MemberId.;
+                //Cost.AddBy = member.MemberId;
             }
             costList.Add(Cost);
             GetCostListAsync();

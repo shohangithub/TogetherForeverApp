@@ -5,6 +5,7 @@
              Shell.PresentationMode="ModalAnimated"
              Title="New Item"
              >
+    
     <ContentPage.Resources>
         <Style TargetType="Entry">
             <Setter Property="PlaceholderColor" Value="LightGray"/>
@@ -24,28 +25,28 @@
                    />
             <!--<Label Text="Name" FontSize="Medium" />-->
             <Entry 
-                Text="{Binding memberName, Mode=TwoWay}" 
+                Text="{Binding member.MemberName, Mode=TwoWay}" 
                 Placeholder="Member Name"
                 />
             <Entry 
-                Text="{Binding memberEmail, Mode=TwoWay}" 
+                Text="{Binding member.MemberEmail, Mode=TwoWay}" 
                 Placeholder="Email"
                 Keyboard="Email"
                 />
             <Entry 
-                Text="{Binding memberContact, Mode=TwoWay}" 
+                Text="{Binding member.MemberContact, Mode=TwoWay}" 
                 Placeholder="Contact"
                 />
             <Label  Margin="15,10" Text="Is Manager" FontSize="Medium" />
             <Switch 
                 IsEnabled="True"
                 Margin="15,10"
-                IsToggled="{Binding isManager,Mode=TwoWay}" 
+                IsToggled="{Binding member.IsManager,Mode=TwoWay}" 
                 OnColor="LightGreen" 
                 ThumbColor="#2196F3" 
                 HorizontalOptions="Start"/>
             <StackLayout Orientation="Horizontal">
-                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Cancel" Command="{Binding CancelCommand}" BackgroundColor="Black" HorizontalOptions="FillAndExpand"></Button>
                 <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
             </StackLayout>
         </StackLayout>
